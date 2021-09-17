@@ -9,15 +9,15 @@
 
 class Extern {
 private:
-    std::vector<unsigned short int> coins;
+    std::vector<unsigned int> coins;
 
 public:
 
-    const std::vector<unsigned short> &getCoins() const;
+    std::vector<unsigned int> & getCoins();
 
-    void addCoin(unsigned short int c);
+    void addCoin(unsigned int c);
 
-    void setCoins(const std::vector<unsigned short> &coins);
+    void setCoins(const std::vector<unsigned> &coins);
 
 };
 

@@ -5,14 +5,14 @@
 #include "Extern.h"
 #include <vector>
 
-const std::vector<unsigned short int> &Extern::getCoins() const {
+std::vector<unsigned int> &Extern::getCoins() {
     return coins;
 }
 
-void Extern::setCoins(const std::vector<unsigned short> &coins) {
+void Extern::setCoins(const std::vector<unsigned > &coins) {
     Extern::coins = coins;
 }
 
-void Extern::addCoin(unsigned short int c) {
+void Extern::addCoin(unsigned int c) {
     coins.push_back(c);
 }

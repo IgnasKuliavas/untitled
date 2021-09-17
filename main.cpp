@@ -1,55 +1,56 @@
 #include <iostream>
 #include "Extern.h"
 #include <string>
-#include <vector>
+#include <sstream>
+#include <utility>
 
-void Input(Extern ext);
-void Calculation();
+void Input(Extern &ext);
+void Calculation(Extern& ext);
 unsigned short int Result();
 
 int main() {
     Extern ext;
     Input(ext);
+    Calculation(ext);
 
     return 0;
 }
 
-void Input(Extern ext)
+void Input(Extern &ext)
 {
-
-    std::vector<std::string> words{};
-
-    size_t pos = 0;
-
-
-
     std::string temp;
+
     getline(std::cin, temp);
-    std::cout << temp;
 
+    std::stringstream check1(temp);
 
-    std::stringstream tekstas(temp);
-    std::string word;
-    while (tekstas >> word) {
-        std::cout << word << std::endl;
+    std::string intermediate;
+    while(getline(check1, intermediate, ' ')) {
+         ext.addCoin(stoi(intermediate));
     }
 
+    if(ext.getCoins().size() <= 3 || ext.getCoins().size() >= 1000000)
+        std::cout << "yes" << std::endl;
 
+    if (ext.getCoins().size() % 3 != 0)
+        std::cout << "no" << std::endl;
 
-//    while((pos = temp.find(" ")) != std::string::npos){
-//        words.push_back(temp.substr(0, pos));
-//        temp.erase(0, pos + strlen(" "));
-////    }
-//    for (auto it: words) {
-//        std::cout << it << std::endl;
-//    }
-
-
+    for(int i = 0; i < ext.getCoins().size(); i++)
+        if(ext.getCoins()[i] <= 1 || ext.getCoins()[i] >= 100000) {
+            std::cout << "epic";
+            break;
+        }
 
 }
 
-void Calculation()
+void Calculation(Extern& ext)
 {
+    for(int i = 0; i < ext.getCoins().size(); i++)
+        for(int j = i+1; j < ext.getCoins().size(); j++)
+            if(ext.getCoins()[j] > ext.getCoins()[i])
+                std::swap(ext.getCoins()[j], ext.getCoins()[i]);
+
+
 
 }
 
